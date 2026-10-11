@@ -39,11 +39,30 @@ npx wrangler pages deploy out --project-name editrix-portfolio
 Set `NEXT_PUBLIC_SITE_URL` to the live domain before building so Open Graph
 tags resolve to absolute URLs.
 
+## Adding your own videos
+
+The grid never loads a master file. Each card ships a poster JPEG and a short
+muted loop with `preload="none"`, so nothing downloads until someone hovers.
+Keep each loop under ~2MB and the page stays fast no matter how many cards
+there are.
+
+```bash
+./scripts/make-reel.sh ~/exports/brand-film.mov nightfall --start 00:01:04 --duration 9
+./scripts/make-reel.sh ~/exports/reel-vertical.mp4 aurora --aspect 9:16
+```
+
+That writes `public/reel/<slug>.mp4` and `.jpg`. Point an entry in
+`src/lib/work.ts` at them.
+
+Full-length films do not belong in `public/` — Cloudflare Pages rejects any
+single file over 25 MiB, and large binaries bloat the repo. Host those on
+YouTube or Vimeo (unlisted works) or Cloudflare Stream, and play the embed in
+the lightbox while the card keeps using the short local loop.
+
 ## Still to replace
 
 - `public/reel/*` — placeholder clips cut from Creative Commons footage
   (Blender Foundation's *Sintel* and *Big Buck Bunny*, plus a jellyfish plate).
-  Swap in real work and update `src/lib/work.ts`.
 - Project titles, runtimes and years in `src/lib/work.ts` are illustrative.
 
 ## Measured
