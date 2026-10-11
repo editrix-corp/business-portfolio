@@ -10,15 +10,23 @@ const editorial = Instrument_Serif({
   subsets: ["latin"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
-  title: "Salil Salalia — Film editor and colorist",
+  metadataBase: new URL(siteUrl),
+  title: "Editrix Corp — Video editing team",
   description:
-    "Brand films, documentaries and launch spots cut, graded and mixed in Mumbai. First assembly within 48 hours.",
+    "A team of editors cutting short-form and long-form video for creators and brands. Editing, color, graphics and thumbnails.",
   openGraph: {
-    title: "Salil Salalia — Film editor and colorist",
+    title: "Editrix Corp — Video editing team",
     description:
-      "Brand films, documentaries and launch spots cut, graded and mixed in Mumbai.",
+      "A team of editors cutting short-form and long-form video for creators and brands.",
     type: "website",
+    images: [{ url: "/og.png", width: 1200, height: 630 }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    images: ["/og.png"],
   },
 };
 

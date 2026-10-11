@@ -14,8 +14,8 @@ export function Capabilities() {
       <SectionHeader
         index="02"
         eyebrow="What I handle"
-        title="One person from rushes to masters."
-        note="No handoffs between an editor, a colorist and a mixer who have never spoken. The film stays in one head."
+        title="From rushes to the thumbnail."
+        note="Each project goes to the editor whose niche it sits in, and the same team carries it through color and graphics."
       />
       <h2 id="craft-heading" className="sr-only">
         Capabilities

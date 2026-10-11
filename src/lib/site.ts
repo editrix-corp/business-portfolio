@@ -1,61 +1,73 @@
 export const profile = {
-  name: "Salil Salalia",
-  role: "Film editor and colorist",
-  base: "Mumbai — working remote across IST, CET and EST",
-  email: "hello@salilsalalia.com",
-  availability: "Taking on two projects from November 2026",
+  brand: "Editrix Corp",
+  lead: "Salil Salalia",
+  role: "Video editing team",
+  base: "India — working remote",
+  email: "editrixcorp@gmail.com",
+  phone: "+91 94695 14140",
+  phoneHref: "tel:+919469514140",
+  instagram: "https://www.instagram.com/editrixco1/",
+  instagramHandle: "@editrixco1",
+  availability: "Taking on new projects",
   intro:
-    "I cut brand films, documentaries and launch spots. Most of my work is long-form footage turned into something a stranger will watch to the end — selects, structure, grade, mix, delivery.",
+    "We are a group of editors who work as a team, each one in their own niche. The video is the bridge between a creator and the audience, and our job is to make sure that bridge holds.",
 } as const;
 
 export const navLinks = [
   { href: "#work", label: "Work" },
-  { href: "#craft", label: "Craft" },
+  { href: "#craft", label: "Services" },
   { href: "#process", label: "Process" },
   { href: "#faq", label: "FAQ" },
 ] as const;
 
 export const stats = [
-  { value: "9", unit: "years", label: "Cutting full time" },
-  { value: "142", unit: "films", label: "Delivered since 2017" },
-  { value: "48", unit: "hours", label: "Typical first assembly" },
-  { value: "11", unit: "countries", label: "Clients shipped for" },
+  { value: "03", unit: "years", label: "Editing as a team" },
+  { value: "05", unit: "tools", label: "Resolve to CapCut" },
+  { value: "07", unit: "cuts", label: "In this reel" },
 ] as const;
 
-export const clients = [
-  "Tatva Studios",
-  "Northbeam Cycles",
-  "Blue Current Trust",
-  "Ronin Coffee Roasters",
-  "Hale & Thorne",
-  "Orbit Audio",
-  "Sealine Hotels",
-  "Low Harbour",
+export const services = [
+  "Short-form edits",
+  "Long-form edits",
+  "Color grading",
+  "Reels and shorts",
+  "Thumbnails",
+  "Motion graphics",
+  "Brand films",
+  "Podcast cuts",
+] as const;
+
+export const toolkit = [
+  { name: "DaVinci Resolve", use: "Edit, color, finishing" },
+  { name: "Adobe Photoshop", use: "Thumbnails, key art" },
+  { name: "CapCut", use: "Short-form and captions" },
+  { name: "Canva", use: "Templates and social kits" },
+  { name: "PicsArt", use: "Quick asset cleanup" },
 ] as const;
 
 export const capabilities = [
   {
-    title: "Story and structure",
-    body: "I start in the transcript, not the timeline. Paper edit first, then selects, then a rough that already has the ending it needs.",
-    tools: ["Premiere Pro", "Resolve", "Transcript edit"],
+    title: "Editing and story",
+    body: "Selects, structure and pacing. We cut for the platform the video lands on, so a long-form edit and a 30-second version are not the same edit twice.",
+    tools: ["DaVinci Resolve", "CapCut"],
     tone: "blue",
   },
   {
     title: "Color",
-    body: "Node-based grading from log or raw. Matched across cameras and shoot days, with a show LUT you can hand to anyone downstream.",
-    tools: ["DaVinci Resolve", "ACES", "Show LUTs"],
+    body: "Grading in Resolve, matched across cameras and shoot days so a series of videos looks like one body of work rather than separate uploads.",
+    tools: ["DaVinci Resolve", "Camera match"],
     tone: "yellow",
   },
   {
-    title: "Sound and mix",
-    body: "Dialogue cleanup, spot effects, music edit to picture. Delivered at broadcast loudness so nobody has to re-ride the fader.",
-    tools: ["Fairlight", "iZotope RX", "-14 LUFS"],
+    title: "Graphics and thumbnails",
+    body: "Titles, lower thirds and the thumbnail that decides whether anyone clicks. Built from the same frames as the edit, not sourced separately.",
+    tools: ["Photoshop", "Canva", "PicsArt"],
     tone: "green",
   },
   {
-    title: "Finishing",
-    body: "Titles, lower thirds, light cleanup and tracked fixes. Masters plus every social ratio, named the way your team files things.",
-    tools: ["After Effects", "9:16 / 1:1 / 4:5", "ProRes + H.264"],
+    title: "Short-form and delivery",
+    body: "Vertical cutdowns reframed shot by shot, captions burned in, exported in every ratio your channels need and named so nobody has to rename them.",
+    tools: ["CapCut", "9:16 / 1:1 / 4:5", "H.264 masters"],
     tone: "red",
   },
 ] as const;
@@ -64,53 +76,45 @@ export const process = [
   {
     step: "01",
     title: "Brief and footage",
-    body: "A 30-minute call, then your rushes land in my drive. I come back with a paper edit and the shots I think carry the film.",
+    body: "Tell us what the video is for and where it goes. Send the rushes on any drive link you already use. We come back with the approach before cutting.",
   },
   {
     step: "02",
-    title: "First assembly in 48 hours",
-    body: "You see structure early, while it is still cheap to change. Comments go on a Frame.io link, timecoded, no email threads.",
+    title: "First cut",
+    body: "You see structure early, while it is still cheap to change. Notes come back on one link with timecodes rather than scattered across chats.",
   },
   {
     step: "03",
-    title: "Grade, mix, deliver",
-    body: "Two rounds of revisions are built into every quote. Masters, captions and ratio variants land together in one folder.",
+    title: "Grade, graphics, delivery",
+    body: "Color, titles and thumbnails on the approved cut. Masters plus every ratio your channels need land together in one folder.",
   },
 ] as const;
 
-export const shortcuts = [
-  { keys: ["J", "K", "L"], label: "Shuttle through 4TB of rushes" },
-  { keys: ["Q"], label: "Ripple trim to playhead" },
-  { keys: ["Cmd", "K"], label: "Add edit across all tracks" },
-  { keys: ["Opt", "["], label: "Mark selects as I watch" },
-] as const;
-
-export const testimonial = {
+export const studioNote = {
   quote:
-    "We sent Salil 40 hours from a three-city shoot and a brief that kept changing. The first cut came back in two days and it was already the film we argued about wanting.",
-  person: "Priya Nanda",
-  title: "Head of Brand, Tatva Studios",
+    "The bridge between a content creator and the audience is the video. We make sure that bridge is solid.",
+  source: "Editrix Corp",
 } as const;
 
 export const faqs = [
   {
-    q: "What does a project usually cost?",
-    a: "A 60 to 90 second brand film with grade and mix sits between ₹1.8L and ₹3.2L depending on footage volume and how many ratio variants you need. Documentary work is quoted by the week. You get a fixed number before anything starts.",
+    q: "What kind of work do you take on?",
+    a: "Short-form and long-form content for creators and brands: YouTube edits, reels and shorts, brand films, podcast cuts and the thumbnails that go with them. We work as a team, so a project is matched to the editor whose niche it sits in.",
   },
   {
-    q: "How fast can you turn a cut around?",
-    a: "First assembly within 48 hours of receiving footage, on every project. Full delivery with grade, mix and variants is typically seven to ten working days.",
+    q: "What do you edit in?",
+    a: "DaVinci Resolve for editing, color and finishing, CapCut for short-form and captions, and Photoshop, Canva and PicsArt for thumbnails, titles and social assets.",
   },
   {
-    q: "How should I hand over footage?",
-    a: "A shared drive link is fine — Frame.io, Dropbox or a hard drive if it is over 2TB. Send camera originals, not proxies, plus any audio recorded separately and the brand kit if one exists.",
+    q: "How should we send footage?",
+    a: "Any drive link you already use — Google Drive, Dropbox or WeTransfer. Send the camera files rather than compressed exports, plus separately recorded audio and your brand assets if you have them.",
   },
   {
-    q: "What happens if we want changes?",
-    a: "Two rounds of revisions are in every quote, and a round means one consolidated set of notes. Anything past that is billed hourly, agreed in writing before I open the project.",
+    q: "What comes back at the end?",
+    a: "The master in the ratio you asked for, plus the extra ratios your channels need, captions where they apply, and the thumbnail if that was part of the brief. Everything in one folder, named so it can be scheduled directly.",
   },
   {
-    q: "Do you take on retainers?",
-    a: "Yes, for teams shipping four or more films a quarter. A retainer buys reserved weeks in the calendar and a shared project structure, which makes everything after the first film much faster.",
+    q: "How do we start?",
+    a: "Message us on Instagram or email with what you are making, roughly how much footage there is and when it has to be live. You get a quote and a start date back before anything begins.",
   },
 ] as const;

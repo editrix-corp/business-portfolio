@@ -43,7 +43,7 @@ export function ShowreelFrame() {
           ))}
         </div>
         <p className="flex-1 text-center font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
-          reel_2026_v4.mp4 — 2.39:1 — ProRes 422
+          reel_2026_v4.mp4 — 2.39:1 — H.264
         </p>
         <span className="hidden w-14 sm:block" />
       </div>
@@ -105,7 +105,7 @@ export function ShowreelFrame() {
 
       <figcaption className="flex flex-wrap items-center justify-between gap-2 border-t border-rule px-4 py-3 font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
         <span>Showreel — selected work 2024 to 2026</span>
-        <span>Edit, color and mix by Salil Salalia</span>
+        <span>Edited and graded by Editrix Corp</span>
       </figcaption>
     </figure>
   );

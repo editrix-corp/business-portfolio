@@ -38,7 +38,7 @@ export function WorkLightbox({
     >
       <div className="flex items-center justify-between border-b border-rule px-5 py-3">
         <p className="font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
-          {work.client} — {work.category} — {work.year}
+          {work.format} — {work.year}
         </p>
         <button
           type="button"

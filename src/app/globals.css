@@ -7,7 +7,7 @@
   --color-rule: #eaeaea;
   --color-ink: #111111;
   --color-graphite: #2f3437;
-  --color-muted: #787774;
+  --color-muted: #6f6e6b;
 
   --color-pale-red: #fdebec;
   --color-deep-red: #9f2f2d;
@@ -99,9 +99,148 @@ dialog::backdrop {
   backdrop-filter: blur(4px);
 }
 
+
+/* ---------- liquid motion ---------- */
+
+@property --velocity {
+  syntax: "<number>";
+  inherits: true;
+  initial-value: 0;
+}
+
+/* Scroll drag: sections lean with scroll velocity, transform only. */
+.velocity-skew {
+  transform: skewY(calc(var(--velocity, 0) * 0.3deg))
+    scaleY(calc(1 + min(0.012, abs(var(--velocity, 0)) * 0.004)));
+  transition: transform 320ms var(--ease-quint);
+  will-change: transform;
+}
+
+.velocity-drag {
+  transform: translate3d(0, calc(var(--velocity, 0) * -6px), 0);
+  transition: transform 420ms var(--ease-quint);
+}
+
+/* Goo blobs — blurred at quarter size then scaled up, so the expensive blur
+   runs over a sixteenth of the pixels. Stops painting once the hero leaves. */
+.goo-stage {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25%;
+  height: 25%;
+  transform: scale(4);
+  transform-origin: top left;
+  filter: blur(11px) contrast(16);
+  opacity: 0.26;
+  contain: paint;
+  transition: opacity 400ms linear;
+}
+
+.goo-stage[data-off="true"] {
+  opacity: 0;
+  visibility: hidden;
+}
+
+.goo-stage[data-off="true"] .blob {
+  animation-play-state: paused;
+}
+
+.blob {
+  position: absolute;
+  display: block;
+  border-radius: 9999px;
+  will-change: transform;
+}
+
+.blob-a {
+  top: -12%;
+  left: 8%;
+  width: 38%;
+  height: 38%;
+  background: rgba(149, 100, 0, 0.075);
+  animation: blob-a 26s ease-in-out infinite;
+}
+
+.blob-b {
+  top: 4%;
+  right: 4%;
+  width: 30%;
+  height: 30%;
+  background: rgba(31, 108, 159, 0.04);
+  animation: blob-b 34s ease-in-out infinite;
+}
+
+.blob-c {
+  top: 26%;
+  left: 38%;
+  width: 26%;
+  height: 26%;
+  background: rgba(159, 47, 45, 0.035);
+  animation: blob-c 30s ease-in-out infinite;
+}
+
+@keyframes blob-a {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+  33% { transform: translate3d(30%, 18%, 0) scale(1.14); }
+  66% { transform: translate3d(-14%, 30%, 0) scale(0.92); }
+}
+
+@keyframes blob-b {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(1.05); }
+  40% { transform: translate3d(-38%, 26%, 0) scale(0.9); }
+  70% { transform: translate3d(-12%, -14%, 0) scale(1.18); }
+}
+
+@keyframes blob-c {
+  0%, 100% { transform: translate3d(0, 0, 0) scale(0.95); }
+  50% { transform: translate3d(24%, -28%, 0) scale(1.2); }
+}
+
+/* Magnetic pull release */
+.magnetic {
+  transition: transform 480ms var(--ease-quint);
+  will-change: transform;
+}
+
+/* Trailing cursor blob */
+.liquid-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 60;
+  width: 18px;
+  height: 18px;
+  border-radius: 9999px;
+  background: rgba(17, 17, 17, 0.14);
+  opacity: 0;
+  pointer-events: none;
+  mix-blend-mode: multiply;
+  transition: opacity 400ms var(--ease-quint);
+}
+
+@media (hover: none) {
+  .liquid-cursor { display: none; }
+}
+
+/* Liquid wipe used on media as it enters */
+.reveal-wipe {
+  clip-path: inset(0 0 100% 0 round 14px);
+  transition: clip-path 900ms var(--ease-quint);
+}
+
+.is-visible .reveal-wipe,
+.reveal-wipe.is-visible {
+  clip-path: inset(0 0 0 0 round 0px);
+}
+
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .ambient, .marquee-track { animation: none; }
   .lift:hover { transform: none; }
+  .blob { animation: none; }
+  .velocity-skew, .velocity-drag, .magnetic { transform: none; transition: none; }
+  .liquid-cursor { display: none; }
+  .reveal-wipe { clip-path: none; transition: none; }
 }

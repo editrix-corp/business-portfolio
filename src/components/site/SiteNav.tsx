@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import { navLinks, profile } from "@/lib/site";
+import { Magnetic } from "@/components/motion/Magnetic";
 
 export function SiteNav() {
   const sentinel = useRef<HTMLDivElement>(null);
@@ -36,8 +37,8 @@ export function SiteNav() {
             href="#top"
             className="font-mono text-[11px] uppercase tracking-[0.14em] text-ink"
           >
-            {profile.name}
-            <span className="pl-2 text-muted">— Editor</span>
+            {profile.brand}
+            <span className="pl-2 text-muted">— {profile.role}</span>
           </a>
 
           <ul className="hidden items-center gap-8 md:flex">
@@ -53,12 +54,14 @@ export function SiteNav() {
             ))}
           </ul>
 
+          <Magnetic strength={0.25}>
           <a
             href="#contact"
             className="rounded-[5px] bg-ink px-4 py-2 font-mono text-[11px] uppercase tracking-[0.1em] text-white transition-colors duration-200 hover:bg-graphite active:scale-[0.98]"
           >
             Start a project
           </a>
+          </Magnetic>
         </nav>
       </header>
     </>

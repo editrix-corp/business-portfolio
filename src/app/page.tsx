@@ -1,28 +1,32 @@
 import { Atmosphere } from "@/components/site/Atmosphere";
+import { SmoothScroll } from "@/components/motion/SmoothScroll";
+import { LiquidCursor } from "@/components/motion/LiquidCursor";
 import { SiteNav } from "@/components/site/SiteNav";
 import { SiteFooter } from "@/components/site/SiteFooter";
 import { Hero } from "@/components/hero/Hero";
 import { WorkSection } from "@/components/work/WorkSection";
-import { ClientStrip } from "@/components/sections/ClientStrip";
+import { ServicesStrip } from "@/components/sections/ServicesStrip";
 import { Capabilities } from "@/components/sections/Capabilities";
 import { Process } from "@/components/sections/Process";
-import { Testimonial } from "@/components/sections/Testimonial";
+import { StudioNote } from "@/components/sections/StudioNote";
 import { Faq } from "@/components/sections/Faq";
 import { Contact } from "@/components/sections/Contact";
 
 export default function Page() {
   return (
     <>
+      <SmoothScroll />
+      <LiquidCursor />
       <Atmosphere />
       <div className="relative z-10 flex min-h-full flex-col">
         <SiteNav />
         <main className="flex-1">
           <Hero />
-          <ClientStrip />
+          <ServicesStrip />
           <WorkSection />
           <Capabilities />
           <Process />
-          <Testimonial />
+          <StudioNote />
           <Faq />
           <Contact />
         </main>

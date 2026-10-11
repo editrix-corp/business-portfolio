@@ -11,7 +11,7 @@ export function WorkGrid() {
 
   return (
     <>
-      <div className="mt-10 grid grid-cols-1 gap-5 lg:auto-rows-[88px] lg:grid-cols-12">
+      <div className="velocity-skew mt-10 grid grid-cols-1 gap-5 lg:auto-rows-[88px] lg:grid-cols-12">
         {works.map((work, index) => (
           <Reveal
             key={work.slug}

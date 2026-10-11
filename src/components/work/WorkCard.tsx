@@ -54,10 +54,10 @@ export function WorkCard({
         type="button"
         onClick={() => onOpen(work)}
         className="flex h-full cursor-pointer flex-col text-left"
-        aria-label={`Open ${work.title} for ${work.client}`}
+        aria-label={`Open ${work.title} for ${work.format}`}
       >
         <div
-          className={`relative w-full overflow-hidden bg-bone ${work.aspect} lg:aspect-auto lg:min-h-0 lg:flex-1`}
+          className={`reveal-wipe relative w-full overflow-hidden bg-bone ${work.aspect} lg:aspect-auto lg:min-h-0 lg:flex-1`}
         >
           <video
             ref={video}
@@ -80,7 +80,7 @@ export function WorkCard({
               {work.title}
             </h3>
             <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
-              {work.client}
+              {work.format}
             </p>
           </div>
           <div className="flex shrink-0 flex-col items-end gap-2">
