@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 import { PlayIcon, SoundOffIcon, SoundOnIcon } from "@/components/ui/icons";
+import { asset } from "@/lib/work";
 
 const CHROME_DOTS = ["dot-1", "dot-2", "dot-3"];
 
@@ -52,8 +53,8 @@ export function ShowreelFrame() {
         <video
           ref={video}
           className="block aspect-video w-full object-cover"
-          src="/reel/showreel.mp4"
-          poster="/reel/showreel.jpg"
+          src={asset("/reel/showreel.mp4")}
+          poster={asset("/reel/showreel.jpg")}
           autoPlay
           muted
           loop

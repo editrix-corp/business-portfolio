@@ -1,3 +1,8 @@
+/** Set when building for GitHub Pages, which serves the site under /<repo>. */
+const BASE = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+export const asset = (path: string) => `${BASE}${path}`;
+
 export type Tone = "red" | "blue" | "green" | "yellow";
 
 export type Work = {
@@ -28,7 +33,7 @@ export type Work = {
   order: string;
 };
 
-export const works: Work[] = [
+const rawWorks: Work[] = [
   {
     slug: "signal",
     title: "One Year On",
@@ -182,3 +187,10 @@ export const works: Work[] = [
     order: "order-9",
   },
 ];
+
+export const works: Work[] = rawWorks.map((work) => ({
+  ...work,
+  loop: asset(work.loop),
+  src: asset(work.src),
+  poster: asset(work.poster),
+}));
