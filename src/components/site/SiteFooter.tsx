@@ -1,5 +1,9 @@
 import { profile } from "@/lib/site";
-import { ArrowUpRightIcon } from "@/components/ui/icons";
+import {
+  InstagramIcon,
+  MailIcon,
+  PhoneIcon,
+} from "@/components/ui/icons";
 
 export function SiteFooter() {
   return (
@@ -8,17 +12,33 @@ export function SiteFooter() {
         <p className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted">
           © 2026 {profile.brand} — {profile.lead}
         </p>
-        <div className="flex items-center gap-6">
+        <div className="flex items-center gap-2">
+          <a
+            href={profile.instagram}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={`Editrix Corp on Instagram, ${profile.instagramHandle}`}
+            className="flex size-9 items-center justify-center rounded-[6px] border border-rule bg-surface text-ink transition-colors duration-200 hover:bg-canvas"
+          >
+            <InstagramIcon className="size-4" />
+          </a>
           <a
             href={`mailto:${profile.email}`}
-            className="inline-flex items-center gap-1 font-mono text-[11px] uppercase tracking-[0.12em] text-ink transition-opacity duration-200 hover:opacity-60"
+            aria-label={`Email ${profile.email}`}
+            className="flex size-9 items-center justify-center rounded-[6px] border border-rule bg-surface text-ink transition-colors duration-200 hover:bg-canvas"
           >
-            {profile.email}
-            <ArrowUpRightIcon className="size-3.5" />
+            <MailIcon className="size-4" />
+          </a>
+          <a
+            href={profile.phoneHref}
+            aria-label={`Call ${profile.phone}`}
+            className="flex size-9 items-center justify-center rounded-[6px] border border-rule bg-surface text-ink transition-colors duration-200 hover:bg-canvas"
+          >
+            <PhoneIcon className="size-4" />
           </a>
           <a
             href="#top"
-            className="font-mono text-[11px] uppercase tracking-[0.12em] text-muted transition-colors duration-200 hover:text-ink"
+            className="ml-3 font-mono text-[11px] uppercase tracking-[0.12em] text-muted transition-colors duration-200 hover:text-ink"
           >
             Back to top
           </a>

@@ -82,3 +82,30 @@ export function ArrowDownIcon({ className = "size-4" }: IconProps) {
     </svg>
   );
 }
+
+export function InstagramIcon({ className = "size-4" }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <rect x="3" y="3" width="18" height="18" rx="5" />
+      <circle cx="12" cy="12" r="4" />
+      <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none" />
+    </svg>
+  );
+}
+
+export function MailIcon({ className = "size-4" }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <rect x="3" y="5" width="18" height="14" rx="2.5" />
+      <path d="m3.8 7 7.3 5.2a1.5 1.5 0 0 0 1.8 0L20.2 7" />
+    </svg>
+  );
+}
+
+export function PhoneIcon({ className = "size-4" }: IconProps) {
+  return (
+    <svg {...base} className={className}>
+      <path d="M7.2 3.5h2.1l1.5 3.8-1.8 1.3a11 11 0 0 0 5.4 5.4l1.3-1.8 3.8 1.5v2.1a2.2 2.2 0 0 1-2.4 2.2A15.6 15.6 0 0 1 5 5.9a2.2 2.2 0 0 1 2.2-2.4Z" />
+    </svg>
+  );
+}

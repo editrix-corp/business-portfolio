@@ -73,6 +73,10 @@ export function WorkLightbox({
             src={work.src}
             poster={work.poster}
             controls
+            // Keeps the download button out of the native control bar.
+            controlsList="nodownload noplaybackrate"
+            disablePictureInPicture
+            onContextMenu={(event) => event.preventDefault()}
             autoPlay
             playsInline
             preload="auto"
