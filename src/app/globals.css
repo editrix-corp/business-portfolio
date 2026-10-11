@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@theme {
+  --color-canvas: #fbfbfa;
+  --color-bone: #f7f6f3;
+  --color-surface: #ffffff;
+  --color-rule: #eaeaea;
+  --color-ink: #111111;
+  --color-graphite: #2f3437;
+  --color-muted: #787774;
+
+  --color-pale-red: #fdebec;
+  --color-deep-red: #9f2f2d;
+  --color-pale-blue: #e1f3fe;
+  --color-deep-blue: #1f6c9f;
+  --color-pale-green: #edf3ec;
+  --color-deep-green: #346538;
+  --color-pale-yellow: #fbf3db;
+  --color-deep-yellow: #956400;
+
+  --font-sans: var(--font-geist-sans), "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+  --font-mono: var(--font-geist-mono), "SF Mono", ui-monospace, monospace;
+  --font-serif: var(--font-editorial), "Newsreader", Georgia, serif;
+
+  --ease-quint: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-canvas);
+  color: var(--color-ink);
+  font-family: var(--font-sans);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: var(--color-pale-yellow);
+  color: var(--color-ink);
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-ink);
+  outline-offset: 3px;
+}
+
+/* Scroll-entry primitive, driven by IntersectionObserver in Reveal.tsx */
+.reveal {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 600ms var(--ease-quint),
+    transform 600ms var(--ease-quint);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+/* Ultra-diffuse card lift */
+.lift {
+  box-shadow: 0 0 0 rgba(0, 0, 0, 0);
+  transition:
+    box-shadow 200ms var(--ease-quint),
+    transform 200ms var(--ease-quint);
+}
+
+.lift:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transform: translateY(-2px);
+}
+
+/* Slow ambient warmth behind the hero */
+@keyframes drift {
+  0% { transform: translate3d(-4%, -2%, 0) scale(1); }
+  50% { transform: translate3d(4%, 3%, 0) scale(1.08); }
+  100% { transform: translate3d(-4%, -2%, 0) scale(1); }
+}
+
+.ambient {
+  animation: drift 28s ease-in-out infinite;
+}
+
+@keyframes marquee {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(-50%, 0, 0); }
+}
+
+.marquee-track {
+  animation: marquee 42s linear infinite;
+}
+
+dialog::backdrop {
+  background: rgba(17, 17, 17, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .reveal { opacity: 1; transform: none; transition: none; }
+  .ambient, .marquee-track { animation: none; }
+  .lift:hover { transform: none; }
+}
