@@ -57,12 +57,14 @@ export function WorkCard({
         aria-label={`Open ${work.title} for ${work.format}`}
       >
         <div
-          className={`reveal-wipe relative w-full overflow-hidden bg-bone ${work.aspect} lg:aspect-auto lg:min-h-0 lg:flex-1`}
+          className={`reveal-wipe relative w-full overflow-hidden bg-bone ${
+            work.wide ? "aspect-[16/9]" : "aspect-[9/16]"
+          } lg:aspect-auto lg:min-h-0 lg:flex-1`}
         >
           <video
             ref={video}
             className="absolute inset-0 size-full object-cover transition-transform duration-700 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.03]"
-            src={work.src}
+            src={work.loop}
             poster={work.poster}
             muted
             loop
@@ -74,19 +76,22 @@ export function WorkCard({
           </span>
         </div>
 
-        <div className="flex items-start justify-between gap-4 border-t border-rule px-5 py-4">
-          <div>
-            <h3 className="font-serif text-xl leading-tight tracking-[-0.02em] text-ink">
+        <div className="flex items-start justify-between gap-4 border-t border-rule px-4 py-3.5 sm:px-5 sm:py-4">
+          <div className="min-w-0">
+            <h3 className="truncate font-serif text-lg leading-tight tracking-[-0.02em] text-ink sm:text-xl">
               {work.title}
             </h3>
+            {/* The format line already names the category, so the tag can go
+                when there is no room for it. */}
             <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
               {work.format}
+              <span className="sm:hidden"> — {work.duration}</span>
             </p>
           </div>
-          <div className="flex shrink-0 flex-col items-end gap-2">
+          <div className="hidden shrink-0 flex-col items-end gap-2 sm:flex">
             <Tag tone={work.tone}>{work.category}</Tag>
             <span className="font-mono text-[10px] tracking-[0.1em] text-muted">
-              {work.duration} — {work.year}
+              {work.duration}
             </span>
           </div>
         </div>

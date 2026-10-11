@@ -23,7 +23,7 @@ export const navLinks = [
 export const stats = [
   { value: "03", unit: "years", label: "Editing as a team" },
   { value: "05", unit: "tools", label: "Resolve to CapCut" },
-  { value: "07", unit: "cuts", label: "In this reel" },
+  { value: "08", unit: "cuts", label: "In this reel" },
 ] as const;
 
 export const services = [

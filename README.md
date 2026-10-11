@@ -39,6 +39,24 @@ npx wrangler pages deploy out --project-name editrix-portfolio
 Set `NEXT_PUBLIC_SITE_URL` to the live domain before building so Open Graph
 tags resolve to absolute URLs.
 
+## How the video is delivered
+
+The approach is the one web.dev and Squarespace Engineering both recommend for
+galleries, and it is why a page with 12 videos on it still loads instantly:
+
+| Surface | What loads | Why |
+|---|---|---|
+| Grid card | poster JPEG only, `preload="none"` | nothing downloads until hover |
+| Hover / in view | 7s silent loop, 170–780KB | enough to show the cut |
+| Lightbox | full cut with audio, 1–10MB | only for someone who asked for it |
+| Hero | 24s showreel, `preload="metadata"` | the one file that autoplays |
+
+Everything is self-hosted H.264 MP4 with `+faststart`, served from Cloudflare's
+edge. No YouTube embed, no third-party player, no tracking scripts.
+
+Source footage was HEVC, which Chrome and Firefox often cannot decode — every
+clip is transcoded to H.264 on the way in.
+
 ## Adding your own videos
 
 The grid never loads a master file. Each card ships a poster JPEG and a short
@@ -54,10 +72,44 @@ there are.
 That writes `public/reel/<slug>.mp4` and `.jpg`. Point an entry in
 `src/lib/work.ts` at them.
 
-Full-length films do not belong in `public/` — Cloudflare Pages rejects any
-single file over 25 MiB, and large binaries bloat the repo. Host those on
-YouTube or Vimeo (unlisted works) or Cloudflare Stream, and play the embed in
-the lightbox while the card keeps using the short local loop.
+Cloudflare Pages rejects any single file over 25 MiB, so keep full cuts under
+that — 720p at CRF 28 puts a 70-second vertical at about 10MB. Anything longer
+than a few minutes belongs on YouTube or Cloudflare Stream instead, embedded in
+the lightbox while the card keeps its local loop.
+
+## Security
+
+`public/_headers` ships the policy; Cloudflare applies it at the edge. Verify
+after deploying with `curl -I https://your-domain`.
+
+- **CSP with no `'unsafe-inline'` for scripts.** Next emits inline bootstrap
+  scripts whose contents change every build, so `scripts/postbuild.mjs` hashes
+  them and writes the hashes into the policy. `style-src` still needs
+  `'unsafe-inline'` because React writes inline style attributes for the motion
+  transforms; that is a much smaller risk than script injection.
+- HSTS with preload, `X-Frame-Options: DENY`, `frame-ancestors 'none'`,
+  `nosniff`, `strict-origin-when-cross-origin`, and a Permissions-Policy that
+  denies camera, microphone, geolocation, payment and USB.
+- `form-action 'none'` — the site has no forms, so nothing should ever post.
+- No third-party origins at runtime. Fonts are self-hosted by `next/font`, so
+  the page contacts no host but its own. Verified with a request log.
+- No secrets, no API keys, no backend, no user input. The only
+  `dangerouslySetInnerHTML` is the JSON-LD block, built from local constants.
+
+The policy is tested, not assumed: the export is served locally with the real
+headers applied and checked for CSP violations and for successful hydration.
+
+## SEO
+
+- `VideoObject` JSON-LD for all eight videos (name, description, thumbnailUrl,
+  uploadDate, duration, contentUrl) plus a `ProfessionalService` node linking
+  them to the studio, its contact details and its Instagram.
+- Open Graph and Twitter card with a generated 1200×630 image.
+- `robots.txt`, `sitemap.xml` and the canonical URL are written at export time
+  from `NEXT_PUBLIC_SITE_URL`.
+- One `h1`, section-level `h2`s, semantic `section`/`article`/`figure`/`dl`,
+  and `lang="en"`.
+- Validate the markup at https://search.google.com/test/rich-results once live.
 
 ## Still to replace
 

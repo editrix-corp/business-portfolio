@@ -13,7 +13,7 @@ export function Capabilities() {
     >
       <SectionHeader
         index="02"
-        eyebrow="What I handle"
+        eyebrow="What we handle"
         title="From rushes to the thumbnail."
         note="Each project goes to the editor whose niche it sits in, and the same team carries it through color and graphics."
       />

@@ -14,6 +14,16 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  alternates: { canonical: "/" },
+  keywords: [
+    "video editor",
+    "video editing team",
+    "reels editor",
+    "YouTube video editing",
+    "DaVinci Resolve colorist",
+    "short form video editing",
+    "thumbnail design",
+  ],
   title: "Editrix Corp — Video editing team",
   description:
     "A team of editors cutting short-form and long-form video for creators and brands. Editing, color, graphics and thumbnails.",
@@ -22,6 +32,9 @@ export const metadata: Metadata = {
     description:
       "A team of editors cutting short-form and long-form video for creators and brands.",
     type: "website",
+    locale: "en_IN",
+    siteName: "Editrix Corp",
+    url: "/",
     images: [{ url: "/og.png", width: 1200, height: 630 }],
   },
   twitter: {

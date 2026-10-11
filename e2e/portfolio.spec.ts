@@ -22,12 +22,12 @@ test("sound toggle unmutes the showreel", async ({ page }) => {
 
 test("every work card is present and opens a lightbox with its metadata", async ({ page }) => {
   const cards = page.locator("#work article");
-  await expect(cards).toHaveCount(7);
+  await expect(cards).toHaveCount(8);
 
   await cards.first().locator("button").first().click();
   const dialog = page.locator("dialog");
   await expect(dialog).toHaveJSProperty("open", true);
-  await expect(dialog.getByRole("heading", { level: 2 })).toHaveText("Nightfall");
+  await expect(dialog.getByRole("heading", { level: 2 })).toHaveText("One Year On");
   await expect(dialog.locator("video")).toHaveJSProperty("paused", false);
 
   await page.keyboard.press("Escape");

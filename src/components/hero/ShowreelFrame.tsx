@@ -43,7 +43,7 @@ export function ShowreelFrame() {
           ))}
         </div>
         <p className="flex-1 text-center font-mono text-[10px] uppercase tracking-[0.1em] text-muted">
-          reel_2026_v4.mp4 — 2.39:1 — H.264
+          showreel_2026.mp4 — 1280×720 — H.264
         </p>
         <span className="hidden w-14 sm:block" />
       </div>
@@ -51,7 +51,7 @@ export function ShowreelFrame() {
       <div className="group relative bg-ink">
         <video
           ref={video}
-          className="block aspect-[2.39/1] w-full object-cover"
+          className="block aspect-video w-full object-cover"
           src="/reel/showreel.mp4"
           poster="/reel/showreel.jpg"
           autoPlay

@@ -1,4 +1,5 @@
 import { Atmosphere } from "@/components/site/Atmosphere";
+import { StructuredData } from "@/components/site/StructuredData";
 import { SmoothScroll } from "@/components/motion/SmoothScroll";
 import { LiquidCursor } from "@/components/motion/LiquidCursor";
 import { SiteNav } from "@/components/site/SiteNav";
@@ -12,9 +13,12 @@ import { StudioNote } from "@/components/sections/StudioNote";
 import { Faq } from "@/components/sections/Faq";
 import { Contact } from "@/components/sections/Contact";
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export default function Page() {
   return (
     <>
+      <StructuredData siteUrl={siteUrl} />
       <SmoothScroll />
       <LiquidCursor />
       <Atmosphere />

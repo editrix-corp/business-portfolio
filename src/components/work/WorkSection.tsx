@@ -11,7 +11,7 @@ export function WorkSection() {
       <SectionHeader
         index="01"
         eyebrow="Selected work"
-        title="Seven cuts across formats."
+        title="Eight cuts across formats."
         note="Hover any frame to preview it. Open one for the approach, the role and the tools used."
       />
       <h2 id="work-heading" className="sr-only">
